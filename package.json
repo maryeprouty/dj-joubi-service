@@ -1,0 +1,23 @@
+{
+  "name": "dj-joubi-service",
+  "version": "1.0.0",
+  "description": "API Service for authorizing DJ Joubi with Spotify.",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./src/server.cjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mary Prouty",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "querystring": "^0.2.1",
+    "request": "^2.88.2"
+  }
+}
