@@ -4,11 +4,11 @@ Node.js API service for authorizing DJ Joubi with Spotify and fetching playlists
 ## Prerequisites
 1. Install the latest version of [Node.js](https://nodejs.org/en/download).
 2. Install the latest version of [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
-3. [Create a new app in your Spotify Developer account.](https://developer.spotify.com/dashboard).
+3. [Create a new app in your Spotify Developer account](https://developer.spotify.com/dashboard).
 
 ## Local Build and Development Instructions
 1. Clone the repo into Visual Studio Code or your IDE of choice.
-2. Add a .env file in the root folder of the project with the following environment variable:
+2. Add a .env file in the root folder of the project with the following environment variables:
 
     ```
     PORT=8888
