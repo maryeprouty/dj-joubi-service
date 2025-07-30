@@ -34,8 +34,8 @@ export const getTracks = async (req, res) => {
 
 };
 
-// /api/playSelectedPlaylist
-export const playSelectedPlaylist = async (req, res) => {
+// /api/play
+export const play = async (req, res) => {
 
   const options = {
     method: 'PUT',
@@ -52,3 +52,22 @@ export const playSelectedPlaylist = async (req, res) => {
   });
   
 };
+
+// /api/pause
+export const pause = async (req, res) => {
+  const options = {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${req.session.accessToken}`
+    },
+  };
+
+  try {
+    const result = await fetch(`https://api.spotify.com/v1/me/player/pause?device_id=${req.query.device_id}`, options);
+    res.send({
+      result
+    });
+  } catch (error) {
+    console.log('Error pausing playback: ', error);
+  }
+}

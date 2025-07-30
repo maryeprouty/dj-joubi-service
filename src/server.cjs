@@ -45,7 +45,8 @@ router.get("/api/access_token", authController.getAccessToken);
 
 router.get("/api/playlists", playlistController.getPlaylists);
 router.get("/api/tracks", playlistController.getTracks);
-router.put("/api/playSelectedPlaylist", playlistController.playSelectedPlaylist);
+router.put("/api/play", playlistController.play);
+router.put("/api/pause", playlistController.pause);
 
 app.use("", router);
 
