@@ -18,4 +18,4 @@ Node.js API service for authorizing DJ Joubi with Spotify and fetching playlists
     ```
 3. Run ```npm install``` to generate node_modules.
 4. Run ```npm run start``` to start the local server at http://127.0.0.1:8888.
-5. Set up the DJ Joubi React app frontend.
+5. Set up the [DJ Joubi React app](https://github.com/maryeprouty/dj-joubi-app) frontend.
