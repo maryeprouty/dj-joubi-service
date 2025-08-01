@@ -6,8 +6,6 @@
 
 const express = require('express');
 const session = require('express-session');
-const https = require('https');
-const fs = require('fs');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
@@ -59,9 +57,5 @@ router.put("/api/pause", playlistController.pause);
 app.use("", router);
 
 const PORT = process.env.PORT || 8888;
-const options = {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem')
-};
 
-https.createServer(options, app).listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
