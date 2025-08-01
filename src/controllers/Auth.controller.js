@@ -16,8 +16,7 @@ export const login = (req, res)  => {
   res.cookie(stateKey, state, {
     secure: true,
     sameSite: 'none',
-    httpOnly: true,
-    domain: '.azurewebsites.net'
+    httpOnly: true
   });
   console.log(`Login state: ${state}`);
   console.log('Request protocol:', req.protocol);
