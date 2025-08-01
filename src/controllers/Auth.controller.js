@@ -16,7 +16,8 @@ export const login = (req, res)  => {
   res.cookie(stateKey, state, {
     secure: true,
     sameSite: 'none',
-    httpOnly: true
+    httpOnly: true,
+    domain: '.azurewebsites.net'
   });
   console.log(`Login state: ${state}`);
   console.log('Request protocol:', req.protocol);
@@ -29,8 +30,7 @@ export const login = (req, res)  => {
       client_id: clientId,
       scope: scope,
       redirect_uri: redirectUri,
-      state: state,
-      domain: '.azurewebsites.net'
+      state: state
     }));
 };
 
