@@ -14,6 +14,7 @@ export const login = (req, res)  => {
 
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
+  console.log(`Login state: ${state}`);
 
   // Request authorization with the Spotify API to access playlists and web playback SDK
   res.redirect('https://accounts.spotify.com/authorize?' +
@@ -34,6 +35,7 @@ export const callback = (req, res) => {
   const code = req.query.code || null;
   const state = req.query.state || null;
   const storedState = req.cookies ? req.cookies[stateKey] : null;
+  console.log(`Stored state: ${storedState} vs current state: ${state}`);
 
   if (state === null || state !== storedState) {
     res.redirect('/#' +
