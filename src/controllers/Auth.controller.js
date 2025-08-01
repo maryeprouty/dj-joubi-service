@@ -5,6 +5,7 @@ import generateRandomString from '../utils/RandomGenerator.util.js';
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 const redirectUri = process.env.REDIRECT_URI; 
+const baseUri = process.env.BASE_URI;
 
 const stateKey = 'spotify_auth_state';
 const scope = 'user-read-private user-read-email user-read-playback-state user-modify-playback-state streaming';
@@ -75,10 +76,10 @@ export const callback = (req, res) => {
         // Refresh token every 55 minutes (3300000 milliseconds)
         setInterval(() => refreshToken(req), 3300000); 
 
-        res.redirect('https://127.0.0.1:5173/home');
+        res.redirect(`${baseUri}/home`);
 
       } else {
-        res.redirect('https://127.0.0.1:5173/invalid?' +
+        res.redirect(`${baseUri}/invalid?` +
           querystring.stringify({
             error: 'invalid_token'
         }));

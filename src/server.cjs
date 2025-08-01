@@ -14,7 +14,7 @@ const playlistController = require('./controllers/Playlist.controller.js');
 
 const app = express();
 
-const originUrl = 'https://127.0.0.1:5173';
+const originUrl = process.env.BASE_URI;
 
 app.use(session({
   secret: "joubijou",
