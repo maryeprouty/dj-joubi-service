@@ -13,7 +13,11 @@ const scope = 'user-read-private user-read-email user-read-playback-state user-m
 export const login = (req, res)  => {
 
   const state = generateRandomString(16);
-  res.cookie(stateKey, state);
+  res.cookie(stateKey, state, {
+    secure: true,
+    sameSite: 'none',
+    httpOnly: true
+  });
   console.log(`Login state: ${state}`);
 
   // Request authorization with the Spotify API to access playlists and web playback SDK

@@ -20,7 +20,7 @@ app.use(session({
   secret: "joubijou",
   resave: true,
   saveUninitialized: true,
-  cookie: { secure: false }
+  cookie: { secure: true }
 }));
 
 app.use(express.static(__dirname + '/public'))
