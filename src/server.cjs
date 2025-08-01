@@ -37,6 +37,8 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.set('trust proxy', true);
+
 const router = express.Router();
 
 router.get("/api/login", authController.login);
