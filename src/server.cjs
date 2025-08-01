@@ -6,6 +6,8 @@
 
 const express = require('express');
 const session = require('express-session');
+const https = require('https');
+const fs = require('fs');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
@@ -20,7 +22,11 @@ app.use(session({
   secret: "joubijou",
   resave: true,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { 
+    secure: true,
+    sameSite: 'none',
+    httpOnly: true
+   }
 }));
 
 app.use(express.static(__dirname + '/public'))
@@ -53,4 +59,9 @@ router.put("/api/pause", playlistController.pause);
 app.use("", router);
 
 const PORT = process.env.PORT || 8888;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));;
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
+
+https.createServer(options, app).listen(PORT, () => console.log(`Server running on port ${PORT}`));
