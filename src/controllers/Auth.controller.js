@@ -45,12 +45,12 @@ export const callback = (req, res) => {
   console.log('Request protocol:', req.protocol);
   console.log('X-Forwarded-Proto header:', req.headers['x-forwarded-proto']); 
 
-  if (state === null || state !== storedState) {
-    res.redirect('/#' +
-      querystring.stringify({
-        error: 'state_mismatch', state: state
-      }));
-  } else {
+  // if (state === null || state !== storedState) {
+  //   res.redirect('/#' +
+  //     querystring.stringify({
+  //       error: 'state_mismatch', state: state
+  //     }));
+  // } else {
     res.clearCookie(stateKey);
     const authOptions = {
       url: 'https://accounts.spotify.com/api/token',
@@ -84,7 +84,7 @@ export const callback = (req, res) => {
         }));
       }
     });
-  }
+  // }
 };
 
 // /api/access_token
