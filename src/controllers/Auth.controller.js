@@ -38,7 +38,7 @@ export const callback = (req, res) => {
   if (state === null || state !== storedState) {
     res.redirect('/#' +
       querystring.stringify({
-        error: 'state_mismatch'
+        error: 'state_mismatch', state: state
       }));
   } else {
     res.clearCookie(stateKey);
@@ -65,10 +65,10 @@ export const callback = (req, res) => {
         // Refresh token every 55 minutes (3300000 milliseconds)
         setInterval(() => refreshToken(req), 3300000); 
 
-        res.redirect('http://127.0.0.1:5173/home');
+        res.redirect('https://127.0.0.1:5173/home');
 
       } else {
-        res.redirect('http://127.0.0.1:5173/invalid?' +
+        res.redirect('https://127.0.0.1:5173/invalid?' +
           querystring.stringify({
             error: 'invalid_token'
         }));
