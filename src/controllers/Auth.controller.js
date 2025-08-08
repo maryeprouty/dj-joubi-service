@@ -19,9 +19,9 @@ export const login = (req, res)  => {
     sameSite: 'none',
     httpOnly: true
   });
-  console.log(`Login state: ${state}`);
-  console.log('Request protocol:', req.protocol);
-  console.log('X-Forwarded-Proto header:', req.headers['x-forwarded-proto']); 
+  // console.log(`Login state: ${state}`);
+  // console.log('Request protocol:', req.protocol);
+  // console.log('X-Forwarded-Proto header:', req.headers['x-forwarded-proto']); 
 
   // Request authorization with the Spotify API to access playlists and web playback SDK
   res.redirect('https://accounts.spotify.com/authorize?' +
@@ -42,9 +42,9 @@ export const callback = (req, res) => {
   const code = req.query.code || null;
   const state = req.query.state || null;
   const storedState = req.cookies ? req.cookies[stateKey] : null;
-  console.log(`Stored state: ${storedState} vs current state: ${state}`);
-  console.log('Request protocol:', req.protocol);
-  console.log('X-Forwarded-Proto header:', req.headers['x-forwarded-proto']); 
+  // console.log(`Stored state: ${storedState} vs current state: ${state}`);
+  // console.log('Request protocol:', req.protocol);
+  // console.log('X-Forwarded-Proto header:', req.headers['x-forwarded-proto']); 
 
   // if (state === null || state !== storedState) {
   //   res.redirect('/#' +

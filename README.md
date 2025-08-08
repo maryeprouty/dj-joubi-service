@@ -15,6 +15,10 @@ Node.js API service for authorizing DJ Joubi with Spotify and fetching playlists
     CLIENT_ID={your_client_id}
     CLIENT_SECRET={your_client_secret}
     REDIRECT_URI={your_redirect_uri}
+    BASE_URI=http://127.0.0.1:5173
+    IS_SECURE=false
+    SAME_SITE=strict
+    DOMAIN=
     ```
 3. Run ```npm install``` to generate node_modules.
 4. Run ```npm run start``` to start the local server at http://127.0.0.1:8888.
