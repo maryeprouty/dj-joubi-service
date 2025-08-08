@@ -16,7 +16,6 @@ const app = express();
 
 const originUrl = process.env.BASE_URI;
 const isSecure = process.env.IS_SECURE === 'true' ? true : false;
-const sameSite = process.env.SAME_SITE;
 
 app.use(session({
   secret: "joubijou",
@@ -24,7 +23,8 @@ app.use(session({
   saveUninitialized: true,
   cookie: { 
     secure: isSecure,
-    sameSite: sameSite,
+    sameSite: process.env.SAME_SITE,
+    domain: process.env.DOMAIN,
     httpOnly: true
    }
 }));
