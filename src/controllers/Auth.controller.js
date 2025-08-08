@@ -6,6 +6,7 @@ const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
 const redirectUri = process.env.REDIRECT_URI; 
 const baseUri = process.env.BASE_URI;
+const isSecure = process.env.IS_SECURE === 'true' ? true : false;
 
 const stateKey = 'spotify_auth_state';
 const scope = 'user-read-private user-read-email user-read-playback-state user-modify-playback-state streaming';
@@ -15,13 +16,11 @@ export const login = (req, res)  => {
 
   const state = generateRandomString(16);
   res.cookie(stateKey, state, {
-    secure: true,
-    sameSite: 'none',
+    secure: isSecure,
+    sameSite: process.env.SAME_SITE,
+    domain: process.env.DOMAIN,
     httpOnly: true
   });
-  // console.log(`Login state: ${state}`);
-  // console.log('Request protocol:', req.protocol);
-  // console.log('X-Forwarded-Proto header:', req.headers['x-forwarded-proto']); 
 
   // Request authorization with the Spotify API to access playlists and web playback SDK
   res.redirect('https://accounts.spotify.com/authorize?' +
@@ -42,16 +41,13 @@ export const callback = (req, res) => {
   const code = req.query.code || null;
   const state = req.query.state || null;
   const storedState = req.cookies ? req.cookies[stateKey] : null;
-  // console.log(`Stored state: ${storedState} vs current state: ${state}`);
-  // console.log('Request protocol:', req.protocol);
-  // console.log('X-Forwarded-Proto header:', req.headers['x-forwarded-proto']); 
 
-  // if (state === null || state !== storedState) {
-  //   res.redirect('/#' +
-  //     querystring.stringify({
-  //       error: 'state_mismatch', state: state
-  //     }));
-  // } else {
+  if (state === null || state !== storedState) {
+    res.redirect('/#' +
+      querystring.stringify({
+        error: 'state_mismatch', state: state
+      }));
+  } else {
     res.clearCookie(stateKey);
     const authOptions = {
       url: 'https://accounts.spotify.com/api/token',
@@ -85,7 +81,7 @@ export const callback = (req, res) => {
         }));
       }
     });
-  // }
+  }
 };
 
 // /api/access_token
