@@ -15,14 +15,16 @@ const playlistController = require('./controllers/Playlist.controller.js');
 const app = express();
 
 const originUrl = process.env.BASE_URI;
+const isSecure = process.env.IS_SECURE === 'true' ? true : false;
+const sameSite = process.env.SAME_SITE;
 
 app.use(session({
   secret: "joubijou",
   resave: true,
   saveUninitialized: true,
   cookie: { 
-    secure: true,
-    sameSite: 'none',
+    secure: isSecure,
+    sameSite: sameSite,
     httpOnly: true
    }
 }));
