@@ -6,7 +6,7 @@ name: Build and deploy Node.js app to Azure Web App - dj-joubi
 on:
   push:
     branches:
-      - state-check
+      - main
   workflow_dispatch:
 
 jobs:
